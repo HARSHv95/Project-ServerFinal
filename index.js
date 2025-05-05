@@ -6,13 +6,17 @@ const http = require("http");
 const server = http.createServer(app);
 const ROOM_IDLE_TIME = 5 * 60 * 1000;
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://project-app-final.vercel.app', // NO trailing slash
+  credentials: true
+}));
 app.use(express.json());
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173",
+        origin: "https://project-app-final.vercel.app",
         methods: ["GET", "POST"],
+        credentials: true
     }
 });
 
